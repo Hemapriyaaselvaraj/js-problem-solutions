@@ -428,6 +428,24 @@ for(let i=str.length-1;i>=0;i--){
 }
 console.log(rev)
 
+//Reverse the sentence
+let str='i love programming';
+let rev = "";
+let words = str.split("");
+for(let i=words.length-1;i>=0;i--){
+  rev+=words[i];   
+}
+console.log(rev)
+
+//just Reverse the words in sentence
+let str='i love programming';
+let rev = "";
+let words = str.split(" ");
+for(let i=words.length-1;i>=0;i--){
+  rev+=words[i] + " ";   
+}
+console.log(rev)
+
 
 
 
