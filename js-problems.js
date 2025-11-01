@@ -131,6 +131,12 @@ for (let num of arr) {
 }
 console.log(dup);
 
+//add only truthy values in array
+let arr = [0, 1, '', 'hema', false, true, null, undefined, NaN, '0', [], {}, ' ', 42, -5]
+let numbers = arr.filter((val) => typeof val === 'number' && !isNaN(val) )
+let res = numbers.reduce((acc,curr) => acc+curr)
+console.log(res)
+
 // create a promise and resolve, true, when checking an array with some. else reject. and write true to a file if the promise is resolved else show error
 const fs = require("fs");
 const p = new Promise((res, rej) => {
@@ -153,17 +159,38 @@ p.then((result) => {
   console.log("Promise rejected with:", err);
 });
 
+//promise.all,allSettled,race,any
+const p1 = new Promise((res,rej) => {
+    setTimeout(() => {
+        res("promise 1")
+    },2000)
+})
+const p2 = new Promise((res,rej) => {
+    setTimeout(() => {
+        rej("promise 2")
+    },3000)
+})
+const p3 = new Promise((res,rej) => {
+    setTimeout(() => {
+        res("promise 3")
+    },5000)
+})
+Promise.race([p1,p2,p3])
+.then((result) => console.log(result))
+.catch((err) => console.log(err))
+
 // implementation of apply(call,apply,bind)
-let details = {
-  name: "hema",
-  place: "salem",
-};
-function intro(hobby1, hobby2) {
-  console.log(
-    `hey im ${this.name} from ${this.place}, i love ${hobby1} and ${hobby2}`
-  );
+const details = {
+    name: "Hema",
+    age: 30
 }
-intro.apply(details, ["painting", "hearing music"]);
+function display(hobby1,hobby2){
+    console.log(`my name is ${this.name}, and ${this.age} years old and my hobbies are ${hobby1} and ${hobby2}`)
+}
+display.call(details,"singing","dancing")
+display.apply(details,["singing","dancing"])
+const later = display.bind(details,"singing","dancing")
+later()
 
 // generate odd numbers in between 1 and 10 in reverse order
 function* generatorOdd() {
@@ -174,7 +201,6 @@ function* generatorOdd() {
   }
 }
 const oddNumber = generatorOdd();
-
 for (let num of oddNumber) {
   console.log(num);
 }
