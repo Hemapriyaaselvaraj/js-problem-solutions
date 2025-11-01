@@ -739,7 +739,22 @@ for(let count in freq){
     }
 }
 
-//
+//adding n numbers using arrow
+let sum = (...nums)=> {
+    return nums.reduce((acc,curr) => acc+curr,0)
+}
+console.log(sum(1,2,3,4,5))
+console.log(sum(1,2,3))
+
+//callback
+function sum(a,b,callback){
+    const sum = a+b;
+    callback(sum)
+}
+function display(sum){
+    console.log(`the sum is ${sum} `);
+}
+sum(2,3,display)
 
 
 

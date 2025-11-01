@@ -81,3 +81,14 @@
 // writeStream.on("finish" ,() => {
 //     console.log("finished writing")
 // })
+
+//delete file
+// const fs = require("fs");
+// fs.unlink("new1.txt", (err) => {
+//     if(err){
+//         console.log("error occured")
+//     }else{
+//         console.log("file deleted")
+//     }
+// })
+
