@@ -398,27 +398,72 @@ checkPrime(10)
 
 
 //display prime numbers in array
-let arr=[2,5,8,6,4,9,7];
-let isPrime = true;
+let arr = [1,2,3,4,5,6,7,8,9];
 let prime = [];
 for(let num of arr){
     let isPrime = true;
-
-  if(num<=1){
-    isPrime = false;
-}else{
+    if(num<=1){
+        isPrime = false;
+    }
     for(let i=2;i<=Math.sqrt(num);i++){
-        if(num%i === 0){
+        if(num%i == 0){
             isPrime = false;
             break;
         }
     }
-}
     if(isPrime){
-        prime.push(num)
+        prime.push(num);
     }
 }
 console.log(prime)
+
+//OR
+
+let arr = [1,2,3,4,5,6,7,8,9];
+let prime = arr.filter((num) => {
+    if(num <= 1){
+        return false;
+    }
+    for(let i=2;i<=Math.sqrt(num);i++){
+        if(num%i === 0){
+            return false;
+        }
+    }
+    return true;
+})
+console.log(prime)
+
+//delete prime num from array
+let arr = [1,2,3,4,5,6,7,8,9];
+for(let i=0;i<arr.length;i++){
+    let isPrime = true;
+    if(arr[i]<=1){
+        isPrime = false;
+    }
+    for(let j=2;j<=arr[i]/2;j++){
+        if(arr[i]%j === 0){
+            isPrime = false;
+            break;
+        }
+    }
+  if(isPrime){
+      for(let k=i;k<arr.length-1;k++){
+          arr[k]=arr[k+1];
+      }
+      arr.length--;
+      i--;
+  }
+}
+console.log(arr)
+
+
+//sum using reduce
+let arr = [1,2,3,4,5,6,7,8,9];
+
+let sum = arr.reduce((acc,curr) => {
+    return acc+curr;
+})
+console.log(sum)
 
 //Reverse the string
 let str='programming';
@@ -445,6 +490,230 @@ for(let i=words.length-1;i>=0;i--){
   rev+=words[i] + " ";   
 }
 console.log(rev)
+
+//reverse words in sentence=> HELLO WORLD=> OLLEH DLROW 
+let str = "HELLO WORLD";
+let res = "";
+let words = str.split(" ");
+for(let word of words){
+ for(let i=word.length-1;i>=0;i--){
+    res+=word[i];
+}
+res+=" ";
+}
+console.log(res);
+
+//reverse words in sentence=> HELLO => OLLEH
+let str = "HELLO";
+let res = "";
+let words = str.split("");
+for(let i=words.length-1;i>=0;i--){
+    res+=words[i];
+}
+console.log(res);
+
+//multiples of 3 using while loop
+let num = 0;
+do{
+   if(num%3 === 0){
+       console.log(num)
+   } 
+   num++;
+}while(num<100)
+
+//OR
+
+let num = 1;
+while(num<100){
+    if(num%3 ===0){
+        console.log(num)
+    }
+    num++;
+}
+
+//Sort an array manually (no .sort)
+let arr = [2,5,9,3,4,8,7];
+let temp =0;
+for(let i=0;i<arr.length-1;i++){
+    for(let j=i+1;j<arr.length;j++){
+        if(arr[i]>arr[j]){
+          temp = arr[i];
+          arr[i]=arr[j];
+          arr[j]=temp;
+        }
+    }
+}
+console.log(arr)
+
+//Find all occurrences of a target value in an array
+let arr = [5,1,4,2,1,2,8,1];
+let target = 1;
+for(let i=0;i<arr.length;i++){
+    if(arr[i] === target){
+        console.log(arr[i]);
+    }
+}
+
+// Find max and min values without Math.max or Math.min
+let arr = [5,1,4,2,8,9,11];
+let min = Infinity;
+let max = -Infinity;
+for(let i=0;i<arr.length;i++){
+    if(arr[i]>max){
+        max=arr[i];
+    }
+    if(arr[i]<min){
+        min = arr[i];
+    }
+}
+console.log("min: " + min);
+console.log("max: " + max)
+
+//Remove duplicates from an array without built-in methods
+let arr=[1,1,2,2,3,4,5,5,6,6];
+let temp =0;
+for(let i=0;i<arr.length-1;i++){
+    for(let j=i+1;j<arr.length;j++){
+        if(arr[i] == arr[j]){
+            for(let k=j;k<arr.length-1;k++){
+              temp=arr[k];
+              arr[k]=arr[k+1];
+              arr[k+1]=temp;
+            }
+            arr.length--;
+             j--; 
+        }
+      
+    }
+}
+console.log(arr)
+
+//Check if two arrays are equal
+let a = [1,2,3,4,5];
+let b = [1,2,3,4,6];
+let equal = true;
+if(a.length != b.length){
+    equal = false;
+}
+for(let i=0;i<a.length;i++){
+    if(a[i] != b[i]){
+        equal = false;
+        break;
+    }
+}
+if(equal){
+    console.log("arrays equal")
+}else{
+    console.log("arrays not equal")
+}
+
+// Find common elements between two arrays
+let a = [7,2,3,4,5];
+let b = [1,2,8,4,6,4];
+
+for(let i=0;i<a.length;i++){
+    for(let j=0;j<b.length;j++){
+        if(a[i] == b[j]){
+            console.log(a[i])
+            break;
+        }
+    }
+}
+
+
+//check whether the number is palindrome
+let num = 52175;
+let str = num.toString();
+let arr = str.split("");
+isPalin = true;
+for(let i=0;i<arr.length/2;i++){
+    if(arr[i] != arr[arr.length-1-i]){
+        isPalin = false;
+        break;
+    }
+}
+if(isPalin){
+    console.log("Palin number")
+}else{
+    console.log("not a Palin number")
+}
+
+//Find the longest string in an array.
+let arr = ["asus","apple","samsung","dell"];
+let longest = "";
+
+for(let word of arr){
+    if(word.length>longest.length){
+        longest = word;
+    }
+}
+console.log(longest)
+
+//  Replace prime numbers with 0.
+let arr=[1,2,3,4,5,6,7,8,9,10];
+for(let i=0;i<arr.length;i++){
+    let isPrime = true;
+    if(arr[i]<=1){
+        isPrime = false;
+    }
+    for(let j=2;j<=arr[i]/2;j++){
+        if(arr[i]%j === 0){
+            isPrime = false;
+            break;
+        }
+    }
+    if(isPrime){
+       arr[i]=0;
+    }
+}
+console.log(arr)
+
+//Remove multiples of 2 from an array.
+let arr=[1,2,3,4,5,6,7,8,9,10];
+for(let i=0;i<arr.length;i++){
+    if(arr[i]%2 === 0){
+        for(let k=i;k<=arr.length-1;k++){
+            arr[k]=arr[k+1]
+        }
+        arr.length--;
+            i--;
+
+    }
+}
+console.log(arr)
+
+//Elements that appear only once in an array.
+let arr=[1,2,2,3,4,4,5];
+let freq = {};
+let res = [];
+for(let num of arr){
+    if(freq[num]){
+        freq[num]++;
+    }else{
+        freq[num]=1;
+    }
+}
+for(let [num,count] of Object.entries(freq)){
+    if(count === 1){
+        res.push(Number(num))
+    }
+}
+console.log(res)
+
+//OR
+
+let arr = [1,2,3,4,1,2,4,5];
+let freq = {};
+for(let num of arr){
+    freq[num]? freq[num]++ : freq[num]=1;
+}
+for(let count in freq){
+    if(freq[count] === 1){
+        console.log(count)
+    }
+}
+
+//
 
 
 
