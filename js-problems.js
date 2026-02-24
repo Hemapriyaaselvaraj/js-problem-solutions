@@ -31,35 +31,14 @@ console.log(final);
 
 // Remove vowels from the sentence
 let str = "i love programming";
-let vow = "aeiouAEIOU";
-let words = str.split(" ");
+let vow = "AEIOUaeiou";
 let res = "";
-for (word of words) {
-  let newWord = "";
-  for (letter of word) {
-    if (!vow.includes(letter)) {
-      newWord += letter;
-    }
-  }
-  res += newWord + " ";
-}
-console.log(res);
-
-OR
-
-let sentence='fahadeiE uiDcE liVaWrt';
-let vow = "aeiouAEIOU";
-let words = sentence.split("");
-let res = "";
-
-for(let ltr of words){
-    let newWord = "";
+for(let ltr of str){
     if(!vow.includes(ltr)){
-       newWord+=ltr; 
+        res+=ltr;
     }
-res+=newWord;
 }
-console.log(res);
+console.log(res)
 
 // Missing number from array
 let arr = [21, 22, 23, 25, 27, 29, 31];
